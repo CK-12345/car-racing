@@ -39,22 +39,12 @@
         camera.position.set(0, 5, 10);
         camera.lookAt(0, 0, 0);
 
-        // Night Mode toggle (you can set this to true for night mode)
-        const nightMode = true;
-
-        // Lighting setup
-        const ambientLight = new THREE.AmbientLight(nightMode ? 0x222222 : 0xffffff, 0.5);
+        // Lighting setup (day mode)
+        const ambientLight = new THREE.AmbientLight(0xffffff, 0.5); // Brighter ambient light
         scene.add(ambientLight);
         const pointLight = new THREE.PointLight(0xffffff, 1, 50);
         pointLight.position.set(0, 10, 0);
         scene.add(pointLight);
-
-        if (nightMode) {
-            // Headlight for night mode
-            const headlight = new THREE.PointLight(0xffffff, 1, 100);
-            headlight.position.set(0, 2, 5);
-            scene.add(headlight);
-        }
 
         // Car setup
         const carGeometry = new THREE.BoxGeometry(1, 0.5, 2);
@@ -65,7 +55,7 @@
 
         // Track setup with elevation changes (hills, valleys)
         const trackGeometry = new THREE.PlaneGeometry(500, 500, 32, 32);
-        const trackMaterial = new THREE.MeshStandardMaterial({ color: nightMode ? 0x111111 : 0x333333 });
+        const trackMaterial = new THREE.MeshStandardMaterial({ color: 0x333333 }); // Lighter track color
         const track = new THREE.Mesh(trackGeometry, trackMaterial);
         track.rotation.x = -Math.PI / 2;
         track.receiveShadow = true;
@@ -200,4 +190,5 @@
     </script>
 </body>
 </html>
+
 
